@@ -4,6 +4,15 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const User = require("./models/users");
+const dbUrl = `${process.env.MONGO_URI}${process.env.DB_NAME}`;
+
+mongoose.connect(
+  dbUrl,
+  () => console.log("Connected to the database"),
+  (err) => console.log(err)
+);
 
 //Mock data
 const users = [
