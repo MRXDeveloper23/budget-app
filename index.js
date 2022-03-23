@@ -4,37 +4,26 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const dbUrl = `${process.env.MONGO_URI}${process.env.DB_NAME}`;
+const cors = require("cors");
+const Users = require("./models/users");
+const userRoutes = require("./routes/user.routes");
+const accountRoutes = require("./routes/account.routes");
 
-//Mock data
-const users = [
-  {
-    id: 1,
-    username: "k",
-    email: "k@k",
-    password: "k",
-    role: "member",
-  },
-  {
-    id: 2,
-    username: "f",
-    email: "f@f",
-    password: "f",
-    role: "admin",
-  },
-  {
-    id: 3,
-    username: "d",
-    email: "d@d",
-    password: "d",
-    role: "member",
-  },
-];
-
+mongoose.connect(
+  dbUrl,
+  () => console.log("Connected to the database"),
+  (err) => console.log(err)
+);
 let refreshTokens = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cors());
+app.use("/user", userRoutes);
+app.use("/user/account", accountRoutes);
 
 app.listen(3000, () => {
   console.log(`Server is running on port 3000`);
@@ -66,7 +55,7 @@ app.post("/token", (req, res) => {
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   console.log(req.body);
-  const user = users.find(
+  const user = Users.find(
     (user) =>
       user.username === username &&
       user.password === password
@@ -81,9 +70,9 @@ app.post("/login", (req, res) => {
       process.env.REFRESH_TOKEN_SECRET
     );
     refreshTokens.push(refreshToken);
-    res.json({ accessToken, refreshToken });
+    res.status(200).json({ accessToken, refreshToken });
   } else {
-    res.json({
+    res.status(400).json({
       message: "Username or password incorrect!",
     });
   }
@@ -106,7 +95,7 @@ function authenticateToken(req, res, next) {
 }
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "60s",
+    expiresIn: "1h",
   });
 }
 

@@ -1,0 +1,22 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "commonjs": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "semi": [2, "always"],
+    "require-yield": 0,
+    "strict": ["error", "global"],
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "none" }
+    ],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "space-before-function-paren": ["error", "never"],
+    "prettier/prettier": "error"
+  }
+}
