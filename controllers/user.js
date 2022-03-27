@@ -9,7 +9,7 @@ async function createUser(req, res) {
             password: req.body.password,
             role: req.body.role,
         })
-        res.status(200).json({ message: 'User added successfully' })
+        res.status(201).json({ message: 'User added successfully' })
     } catch (err) {
         res.status(400).json({ message: `Error: ${err}` })
     }

@@ -27,13 +27,6 @@ app.use('/user', userRoutes)
 app.use('/user/account', accountRoutes)
 require('./config/passport')(passport)
 
-app.get(
-    '/login',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        console.log('here')
-    }
-)
 app.listen(3000, () => {
     console.log(`Server is running on port 3000`)
 })
