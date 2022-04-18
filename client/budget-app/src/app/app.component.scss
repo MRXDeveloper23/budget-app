@@ -1,0 +1,19 @@
+.toolbar {
+    display: flex;
+    justify-content: space-around;
+    &__account {
+        display: flex;
+        align-items: center;
+        &__name {
+            margin: 0 10px;
+        }
+    }
+    &__menu {
+        &__link {
+            list-style: none;
+            text-decoration: none;
+            margin: 0 10px;
+            color: black;
+        }
+    }
+}
