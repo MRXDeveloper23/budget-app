@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { Router, NavigationEnd, Event } from '@angular/router'
+import { Router } from '@angular/router'
+import { AuthService } from './pages/services/auth.service'
 
 @Component({
     selector: 'app-root',
@@ -8,26 +9,14 @@ import { Router, NavigationEnd, Event } from '@angular/router'
 })
 export class AppComponent {
     title = 'budget-app'
-    menus = [
-        {
-            link: '/categories',
-            title: 'Categories',
-        },
-        {
-            link: '/statistics',
-            title: 'Statistics',
-        },
-        {
-            link: '/admin',
-            title: 'Admin',
-        },
-    ]
-    currentRoute = ''
-    constructor(private router: Router) {
-        this.router.events.subscribe((event: Event) => {
-            if (event instanceof NavigationEnd) {
-                this.currentRoute = event.url
-            }
-        })
+    constructor(private authService: AuthService, private router: Router) {}
+
+    get isLoggedIn() {
+        return this.authService.isLoggedIn()
+    }
+
+    logout() {
+        this.authService.logout()
+        this.router.navigateByUrl('/login')
     }
 }

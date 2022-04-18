@@ -10,13 +10,18 @@ import { MatButtonModule } from '@angular/material/button'
 import { Error404Module } from './pages/error404/error404.module'
 import { HomeModule } from './pages/home/home.module'
 import { LoginModule } from './pages/login/login.module'
+import { HeaderComponent } from './components/header/header.component'
+import { FooterComponent } from './components/footer/footer.component'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import { AuthInterceptor } from './auth/auth.interceptor'
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, HeaderComponent, FooterComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
@@ -24,7 +29,13 @@ import { LoginModule } from './pages/login/login.module'
         LoginModule,
         Error404Module,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

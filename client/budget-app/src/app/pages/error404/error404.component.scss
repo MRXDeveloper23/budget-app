@@ -1,0 +1,17 @@
+.error-page {
+    &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &__status {
+            line-height: 2rem;
+        }
+        &__message1 {
+            line-height: 2rem;
+        }
+        &__message2 {
+            line-height: 2rem;
+        }
+    }
+}

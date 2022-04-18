@@ -1,1 +1,18 @@
-<p>header works!</p>
+<header *ngIf="currentRoute !== '/login'" class="navbar">
+    <mat-toolbar class="toolbar">
+        <span class="toolbar__logo">Budgetify</span>
+        <div class="toolbar_menu">
+            <a
+                routerLink="{{ menu.link }}"
+                class="toolbar__menu__link"
+                *ngFor="let menu of menus"
+                >{{ menu.title }}</a
+            >
+        </div>
+
+        <div class="toolbar__account">
+            <mat-icon>account_circle</mat-icon>
+            <div class="toolbar__account__name">Mamasoliev Khurmatillo</div>
+        </div>
+    </mat-toolbar>
+</header>
