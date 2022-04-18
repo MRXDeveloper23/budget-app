@@ -1,6 +1,6 @@
 <header *ngIf="currentRoute !== '/login'" class="navbar">
     <mat-toolbar class="toolbar">
-        <span class="toolbar__logo">Budgetify</span>
+        <span class="toolbar__logo" (click)="onClick()">Budgetify</span>
         <div class="toolbar_menu">
             <a
                 routerLink="{{ menu.link }}"

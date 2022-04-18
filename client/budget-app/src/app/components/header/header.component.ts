@@ -30,4 +30,7 @@ export class HeaderComponent implements OnInit {
             }
         })
     }
+    onClick() {
+        this.router.navigateByUrl('/')
+    }
 }

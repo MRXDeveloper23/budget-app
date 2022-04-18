@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service'
 })
 @Injectable()
 export class LoginComponent {
-    hide = false
+    hide = true
     loginForm: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),

@@ -8,15 +8,26 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { Error404Module } from './pages/error404/error404.module'
-import { HomeModule } from './pages/home/home.module'
 import { LoginModule } from './pages/login/login.module'
 import { HeaderComponent } from './components/header/header.component'
 import { FooterComponent } from './components/footer/footer.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthInterceptor } from './auth/auth.interceptor'
+import { AccountsComponent } from './components/accounts/accounts.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { PiggyBankComponent } from './components/piggy-bank/piggy-bank.component';
+import { AdditionalComponent } from './components/additional/additional.component'
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, FooterComponent],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        AccountsComponent,
+        TransactionsComponent,
+        PiggyBankComponent,
+        AdditionalComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -25,7 +36,6 @@ import { AuthInterceptor } from './auth/auth.interceptor'
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
-        HomeModule,
         LoginModule,
         Error404Module,
     ],

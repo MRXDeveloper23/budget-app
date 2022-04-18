@@ -4,6 +4,9 @@
     background-color: #efefef;
     font-size: 20px;
     font-style: normal;
+    &__logo{
+        cursor: pointer;
+    }
     &__account {
         display: flex;
         align-items: center;
