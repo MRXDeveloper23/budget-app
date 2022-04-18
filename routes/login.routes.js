@@ -28,20 +28,29 @@ router.post('/token', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    const { username, password } = req.body
-    Users.findOne({
-        username,
+    const { user, password } = req.body
+    Users.find({
+        email: user,
         password,
     })
         .then((user) => {
-            if (user) {
-                const accessToken = generateAccessToken(user)
+            const payload = {
+                id: user.id,
+                email: user.email,
+                role: user.role,
+            }
+            if (payload) {
+                const accessToken = generateAccessToken(payload)
                 const refreshToken = jwt.sign(
-                    user.toJSON(),
+                    payload,
                     process.env.REFRESH_TOKEN_SECRET
                 )
                 refreshTokens.push(refreshToken)
-                res.status(200).json({ accessToken, refreshToken })
+                res.status(200).json({
+                    accessToken,
+                    refreshToken,
+                    expiresIn: 10 * 60 * 1000,
+                })
             } else {
                 res.status(400).json({
                     message: 'Username or password incorrect!',
@@ -51,8 +60,8 @@ router.post('/login', (req, res) => {
         .catch((err) => console.log(err))
 })
 
-function generateAccessToken(user) {
-    return jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, {
+function generateAccessToken(payload) {
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: '1d',
     })
 }
