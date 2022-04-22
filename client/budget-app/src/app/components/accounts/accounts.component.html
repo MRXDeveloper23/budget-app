@@ -1,1 +1,18 @@
-<p>accounts works!</p>
+<div class="root">
+    <div
+        class="card-container"
+        [ngClass]="{ 'card-disabled': !(selected || hoveredOn) }"
+        (mouseover)="onMouseOver()"
+        (mouseout)="onMouseOut()"
+    >
+        <div class="column-1">
+            <p class="name">{{ name }}</p>
+            <p class="balance">{{ balance }}</p>
+        </div>
+        <div class="column-2">
+            <div class="symbol-container">
+                <p class="symbol">{{ symbol }}</p>
+            </div>
+        </div>
+    </div>
+</div>

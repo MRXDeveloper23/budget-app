@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
-  selector: 'app-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.scss']
+    selector: 'app-account',
+    templateUrl: './accounts.component.html',
+    styleUrls: ['./accounts.component.scss'],
 })
-export class AccountsComponent implements OnInit {
+export class AccountsComponent {
+    @Input() name: string = ''
+    @Input() balance: string = ''
+    @Input() symbol: string = ''
 
-  constructor() { }
+    @Input() selected: boolean = false
+    hoveredOn: boolean = false
 
-  ngOnInit(): void {
-  }
+    onMouseOver() {
+        this.hoveredOn = true
+    }
 
+    onMouseOut() {
+        this.hoveredOn = false
+    }
+
+    constructor() {}
 }

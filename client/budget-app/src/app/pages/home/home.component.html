@@ -1,5 +1,31 @@
-<mat-sidenav-container class="main">
-    <mat-sidenav mode="side"></mat-sidenav>
-    <mat-sidenav-content></mat-sidenav-content>
-    <mat-sidenav mode="side" position="end"></mat-sidenav>
-</mat-sidenav-container>
+<div class="root" *ngIf="true">
+    <div class="column-1">
+        <div class="logo-container">
+            <p class="logo">Budgetify</p>
+        </div>
+        <div class="accounts-container">
+            <app-account
+                [selected]="true"
+                [name]="'Debit Card'"
+                [balance]="'5,356.18'"
+                [symbol]="'&#x24;'"
+            ></app-account>
+            <app-account
+                [selected]="false"
+                [name]="'Credit Card'"
+                [balance]="'815.60'"
+                [symbol]="'&#x20AC;'"
+            ></app-account>
+        </div>
+    </div>
+    <div class="column-2">
+        <div class="transactions-container">
+            <app-transactions></app-transactions>
+        </div>
+    </div>
+    <div class="column-3">
+        <div class="actions-container">
+            <app-actions></app-actions>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component'
 import { SubscriptionsComponent } from './pages/subscriptions/subscriptions.component'
 import { Error404Component } from './pages/error404/error404.component'
 import { AuthGuard } from './auth/auth.guard'
+import { SharedModule } from './shared/shared.module'
 
 const routes: Routes = [
     {
@@ -28,7 +29,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), SharedModule],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
