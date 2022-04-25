@@ -1,5 +1,7 @@
 import { Component, Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { AuthService } from '../services/auth.service'
 
 @Component({
     selector: 'app-login',
@@ -8,11 +10,18 @@ import { HttpClient } from '@angular/common/http'
 })
 @Injectable()
 export class LoginComponent {
-    constructor(private http: HttpClient) {}
-    login() {
-        let data = this.http
-            .get('https://jsonplaceholder.typicode.com/todos/1')
-            .subscribe()
-        console.log(data)
+    hide = true
+    loginForm: FormGroup = new FormGroup({
+        email: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
+    })
+    constructor(private authService: AuthService, private router: Router) {}
+    onSubmit() {
+        const { email, password } = this.loginForm.value
+        this.authService.login(email, password).subscribe((data) => {
+            console.log('successful login')
+            console.log(data)
+            this.router.navigateByUrl('/')
+        })
     }
 }

@@ -4,11 +4,14 @@ import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component'
 import { SubscriptionsComponent } from './pages/subscriptions/subscriptions.component'
 import { Error404Component } from './pages/error404/error404.component'
+import { AuthGuard } from './auth/auth.guard'
+import { SharedModule } from './shared/shared.module'
 
 const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'login',
@@ -17,6 +20,7 @@ const routes: Routes = [
     {
         path: 'subcriptions',
         component: SubscriptionsComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: '**',
@@ -25,7 +29,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), SharedModule],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

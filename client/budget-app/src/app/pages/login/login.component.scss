@@ -7,8 +7,10 @@
     align-items: center;
     height: 100vh;
     &__form {
-        width: 515.4px;
-        height: 458.7px;
+        min-width: 350px;
+        width: 60%;
+        max-width: 500px;
+        height: 65%;
         background: rgba(255, 255, 255, 0.8);
         border-radius: 10px;
         display: flex;

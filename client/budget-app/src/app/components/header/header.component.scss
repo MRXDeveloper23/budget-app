@@ -1,0 +1,27 @@
+.toolbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #efefef;
+    font-size: 20px;
+    font-style: normal;
+    &__logo{
+        cursor: pointer;
+    }
+    &__account {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        &__name {
+            margin: 0 10px;
+        }
+    }
+    &__menu {
+        &__link {
+            list-style: none;
+            text-decoration: none;
+            font-weight: 400;
+            margin: 0 10px;
+            color: black;
+        }
+    }
+}
